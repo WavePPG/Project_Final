@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Dobot</title>
+    <script>
+        function sendDirection(direction) {
+            fetch('/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'direction=' + direction
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                alert(data);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Control Dobot</h1>
+    <button onclick="sendDirection('left')">Move Left</button>
+    <button onclick="sendDirection('right')">Move Right</button>
+    <button onclick="sendDirection('up')">Move Up</button>
+    <button onclick="sendDirection('down')">Move Down</button>
+    <button onclick="sendDirection('stop')">Stop</button>
+</body>
+</html>	
